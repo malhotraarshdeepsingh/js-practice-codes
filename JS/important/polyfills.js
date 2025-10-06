@@ -23,3 +23,18 @@ Array.prototype.customForEach = function (callback, thisContext) {
     i++;
   }
 };
+
+
+// Custom implementation of Array.prototype.myReduce
+if(!Array.prototype.myReduce) {
+  Array.prototype.myReduce = function(callback, initialValue) {
+    let acc = initialValue ?? this[0]; // Nullish coalescing to handle undefined initialValue
+    let startIndex = initialValue === undefined ? 1 : 0;
+
+    for(let i = startIndex; i < this.length; i++) {
+      acc = callback(acc, this[i]);
+    }
+
+    return acc;
+  }
+}
